@@ -3,6 +3,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Items from '../api/Items';
 import Item from './Item';
 
+import AccountsUI from './AccountsUI';
+
 class App extends Component {
   addItems = e => {
     e.preventDefault();
@@ -29,6 +31,7 @@ class App extends Component {
       <div>
         <header>
           <h1>Vote!</h1>
+          <AccountsUI />
         </header>
         <main>
           <form onSubmit={this.addItems} className="new-items">

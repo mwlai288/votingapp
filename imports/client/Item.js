@@ -3,19 +3,27 @@ import Items from '../api/Items';
 
 class Item extends Component {
   voteOne = () => {
-    Items.update(this.props.item._id, {
-      $inc: {
-        'itemOne.value': 1
-      }
-    });
+    if (Meteor.userId()) {
+      Items.update(this.props.item._id, {
+        $inc: {
+          'itemOne.value': 1
+        }
+      });
+    } else {
+      alert('Please create an account to add item and vote.');
+    }
   };
 
   voteTwo = () => {
-    Items.update(this.props.item._id, {
-      $inc: {
-        'itemTwo.value': 1
-      }
-    });
+    if (Meteor.userId()) {
+      Items.update(this.props.item._id, {
+        $inc: {
+          'itemTwo.value': 1
+        }
+      });
+    } else {
+      alert('Please create an account to vote');
+    }
   };
 
   render() {
