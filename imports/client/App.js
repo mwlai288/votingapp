@@ -31,7 +31,7 @@ class App extends Component {
           <h1>Vote!</h1>
         </header>
         <main>
-          <form onSubmit={this.addItems}>
+          <form onSubmit={this.addItems} className="new-items">
             <input type="text" ref="itemOne" />
             <input type="text" ref="itemTwo" />
             <button type="submit">Add Items</button>
