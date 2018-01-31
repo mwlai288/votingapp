@@ -21,6 +21,9 @@ class App extends Component {
   };
 
   render() {
+    if (!this.props.ready) {
+      return <div>Loading</div>;
+    }
     return (
       <div>
         <header>
@@ -43,7 +46,9 @@ class App extends Component {
 }
 
 export default withTracker(() => {
+  let itemsSub = Meteor.subscribe('allItems');
   return {
-    items: Items.find({}).fetch()
+    ready: itemsSub.ready(),
+    items: Items.find().fetch()
   };
 })(App);
