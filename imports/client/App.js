@@ -20,6 +20,14 @@ class App extends Component {
     }
   };
 
+  showAll = () => {
+    if (this.props.showAll) {
+      Session.set('showAll', false);
+    } else {
+      Session.set('showAll', true);
+    }
+  };
+
   render() {
     if (!this.props.ready) {
       return <div>Loading</div>;
@@ -29,6 +37,9 @@ class App extends Component {
         <header>
           <h1>Vote!</h1>
           <AccountsUI />
+          <button onClick={this.showAll}>
+            Show {this.props.showAll ? 'One' : 'All'}
+          </button>
         </header>
         <main>
           <form onSubmit={this.addItems} className="new-items">
@@ -47,12 +58,14 @@ class App extends Component {
 
 export default withTracker(() => {
   let itemsSub = Meteor.subscribe('allItems');
+  let showAll = Session.get('showAll');
   return {
+    showAll,
     ready: itemsSub.ready(),
     items: Items.find(
       {},
       {
-        limit: 1,
+        limit: showAll ? 50 : 1,
         sort: { lastUpdated: 1 }
       }
     ).fetch()

@@ -8,7 +8,7 @@ if (Meteor.isServer) {
     return Items.find(
       {},
       {
-        limit: 1,
+        limit: 50,
         sort: { lastUpdated: 1 }
       }
     );
@@ -51,8 +51,6 @@ if (Meteor.isServer) {
                 lastUpdated
               }
             });
-          } else {
-            alert('Please create an account to add item and vote.');
           }
         }
       }
