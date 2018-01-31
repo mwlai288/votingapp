@@ -3,27 +3,11 @@ import Items from '../api/Items';
 
 class Item extends Component {
   voteOne = () => {
-    if (Meteor.userId()) {
-      Items.update(this.props.item._id, {
-        $inc: {
-          'itemOne.value': 1
-        }
-      });
-    } else {
-      alert('Please create an account to add item and vote.');
-    }
+    Meteor.call('voteOnItem', this.props.item, 'itemOne');
   };
 
   voteTwo = () => {
-    if (Meteor.userId()) {
-      Items.update(this.props.item._id, {
-        $inc: {
-          'itemTwo.value': 1
-        }
-      });
-    } else {
-      alert('Please create an account to vote');
-    }
+    Meteor.call('voteOnItem', this.props.item, 'itemTwo');
   };
 
   render() {

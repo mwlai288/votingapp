@@ -11,18 +11,12 @@ class App extends Component {
     const itemOne = this.refs.itemOne.value;
     const itemTwo = this.refs.itemTwo.value;
     if (itemOne !== '' && itemTwo !== '') {
-      Items.insert({
-        itemOne: {
-          text: itemOne,
-          value: 0
-        },
-        itemTwo: {
-          text: itemTwo,
-          value: 0
+      Meteor.call('insertnewItem', itemOne, itemTwo, (err, res) => {
+        if (!err) {
+          this.refs.itemOne.value = '';
+          this.refs.itemTwo.value = '';
         }
       });
-      this.refs.itemOne.value = '';
-      this.refs.itemTwo.value = '';
     }
   };
 
