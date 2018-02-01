@@ -33,25 +33,19 @@ class App extends Component {
       return <div>Loading</div>;
     }
     return (
-      <div>
-        <header>
-          <h1>Vote!</h1>
-          <AccountsUI />
-          <button onClick={this.showAll}>
-            Show {this.props.showAll ? 'One' : 'All'}
-          </button>
-        </header>
-        <main>
-          <form onSubmit={this.addItems} className="new-items">
-            <input type="text" ref="itemOne" />
-            <input type="text" ref="itemTwo" />
-            <button type="submit">Add Items</button>
-          </form>
-          {this.props.items.map(item => {
-            return <Item item={item} key={item._id} />;
-          })}
-        </main>
-      </div>
+      <main>
+        <button onClick={this.showAll}>
+          Show {this.props.showAll ? 'One' : 'All'}
+        </button>
+        <form onSubmit={this.addItems} className="new-items">
+          <input type="text" ref="itemOne" />
+          <input type="text" ref="itemTwo" />
+          <button type="submit">Add Items</button>
+        </form>
+        {this.props.items.map(item => {
+          return <Item item={item} key={item._id} />;
+        })}
+      </main>
     );
   }
 }
